@@ -9,6 +9,8 @@ Toolbox to analyze and characterize protein dynamics
 
 ## Sample Docs - Reading in the Trajectories
 
+`ML-Dynamics/io.py` provides functionality for input/output trajectory reading with MD-Analysis
+
 ```
 
 ```

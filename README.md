@@ -7,10 +7,8 @@ Toolbox to analyze and characterize protein dynamics
 > [!NOTE]  
 > Note for Matthias: This is the codebase for the Kemp Eliminase ML project.
 
-## DATA TYPES WE WILL NEED
-- Data type to store molecular property matrix (of size MxN where M is the # of samples and N is # of features)
-- Data type of store feature names
-- Data type to store row labels/names/metadata (i.e each row needs to have a label/column corresponding to whether the sample comes from an unevolved/evolved mutant)
+> [!IMPORTANT]  
+> Step 1 is now written. Driver script is `run_all_replicas.sh` which calls `run_single_replica.sh` for each replica (actual code is located at `run_single.py`.
 
 ## Sample Docs - Reading in the Trajectories
 

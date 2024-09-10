@@ -1,0 +1,7 @@
+README.md
+setup.py
+MLDynamics.egg-info/PKG-INFO
+MLDynamics.egg-info/SOURCES.txt
+MLDynamics.egg-info/dependency_links.txt
+MLDynamics.egg-info/requires.txt
+MLDynamics.egg-info/top_level.txt

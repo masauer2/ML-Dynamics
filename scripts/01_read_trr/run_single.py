@@ -163,7 +163,7 @@ end = time.time()
 
 with open(LOG_FILE, 'w', buffering=1) as f:
     f.write(f"Successfully computed projections.\n Ready to add labels and output result.\nTime Elapsed = {end - start}.\n")
-    f.flush()Atoms * 3
+    f.flush()
 ###################################################################################################
 displacementProjection_Modes = np.zeros((np.shape(displacement_perAtom)[0],nAtoms), dtype=object)
 for row in range(len(displacementProjection_Modes)):

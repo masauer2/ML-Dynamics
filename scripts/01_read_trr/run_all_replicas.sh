@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for((i=0;i<20;i++))
+for((i=0;i<1;i++))
 do
 echo "Run replica $i"
 cp run_single_replica.sh run_replica_$i.sh

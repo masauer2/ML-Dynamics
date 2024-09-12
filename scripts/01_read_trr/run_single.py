@@ -157,13 +157,13 @@ for i in range(np.shape(displacement_perAtom)[0]):
     for j in range(np.shape(displacement_perAtom)[1]):
         # Hard coded for 2 modes - extend for any number of modes
         for modeNum in range(nModes):
-            projection_perAtom[modeNum,i,j] = properties.projection(displacement_perAtom[i,j],mode_coordinates_reshaped[modeNum][j],nDim=3)
+            projection_perAtom[modeNum,i,j] = np.sqrt(atom_masses[j])*properties.projection(displacement_perAtom[i,j],mode_coordinates_reshaped[modeNum][j],nDim=3)
 
 end = time.time()
 
 with open(LOG_FILE, 'w', buffering=1) as f:
     f.write(f"Successfully computed projections.\n Ready to add labels and output result.\nTime Elapsed = {end - start}.\n")
-    f.flush()
+    f.flush()Atoms * 3
 ###################################################################################################
 displacementProjection_Modes = np.zeros((np.shape(displacement_perAtom)[0],nAtoms), dtype=object)
 for row in range(len(displacementProjection_Modes)):
@@ -173,7 +173,9 @@ for row in range(len(displacementProjection_Modes)):
 ML_INPUT = pd.DataFrame(displacementProjection_Modes, columns=column_names)
 
 ML_INPUT_WITHLABELS = io.add_labels(ML_INPUT, ["Simulation Number", "Simulation Time", "Identity"], [simulationIdx, simulationTime, ["Unevolved"]*np.shape(ML_INPUT)[0]])
-ML_INPUT_WITHLABELS.to_pickle(f"ML_INPUT_{REPLICA_ID}.pkl")  
+np.save(f"ML_INPUT_{REPLICA_ID}.npy", ML_INPUT_WITHLABELS.to_numpy())
+np.savetxt(f"COLUMNS_{REPLICA_ID}.txt", column_names)
+#ML_INPUT_WITHLABELS.to_pickle(f"ML_INPUT_{REPLICA_ID}.pkl")  
 
 end = time.time()
 

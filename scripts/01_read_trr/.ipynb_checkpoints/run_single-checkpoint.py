@@ -186,7 +186,7 @@ for iteration in range(nPrint):
         frameStart = (iteration)*nFramesPerPrint
         np.save(f"ML_INPUT_{REPLICA_ID}_{iteration}.npy", ML_INPUT_WITHLABELS_arr[frameStart:,:])
 
-np.savetxt(f"COLUMNS_{REPLICA_ID}.txt", np.array(column_names), fmt='%s')
+np.savetxt(f"COLUMNS_{REPLICA_ID}.txt", np.array(ML_INPUT_WITHLABELS.columns), fmt='%s')
 
 end = time.time()
 

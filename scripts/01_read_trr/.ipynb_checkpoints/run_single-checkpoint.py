@@ -145,8 +145,8 @@ with open(LOG_FILE, 'w', buffering=1) as f:
     f.flush()
 ###################################################################################################
 # Number of frames = Number of times (this variable can be reset to a small value for testing)
-nFrames = nTimes
-
+#nFrames = nTimes
+nFrames = 1000
 # Reshape displacement matrix so that all DOF per atom are one vector 
 displacement_perAtom = displacement[:nFrames].reshape((nFrames,nAtoms,3))
 
@@ -186,8 +186,7 @@ for iteration in range(nPrint):
         frameStart = (iteration)*nFramesPerPrint
         np.save(f"ML_INPUT_{REPLICA_ID}_{iteration}.npy", ML_INPUT_WITHLABELS_arr[frameStart:,:])
 
-#np.savetxt(f"COLUMNS_{REPLICA_ID}.txt", column_names)
-#ML_INPUT_WITHLABELS.to_pickle(f"ML_INPUT_{REPLICA_ID}.pkl")  
+np.savetxt(f"COLUMNS_{REPLICA_ID}.txt", np.array(column_names), fmt='%s')
 
 end = time.time()
 

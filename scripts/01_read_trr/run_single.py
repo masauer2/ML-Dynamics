@@ -173,8 +173,20 @@ for row in range(len(displacementProjection_Modes)):
 ML_INPUT = pd.DataFrame(displacementProjection_Modes, columns=column_names)
 
 ML_INPUT_WITHLABELS = io.add_labels(ML_INPUT, ["Simulation Number", "Simulation Time", "Identity"], [simulationIdx, simulationTime, ["Unevolved"]*np.shape(ML_INPUT)[0]])
-np.save(f"ML_INPUT_{REPLICA_ID}.npy", ML_INPUT_WITHLABELS.to_numpy())
-np.savetxt(f"COLUMNS_{REPLICA_ID}.txt", column_names)
+ML_INPUT_WITHLABELS_arr = ML_INPUT_WITHLABELS.to_numpy()
+
+nPrint = 10
+nFramesPerPrint = int(nFrames/nPrint)
+for iteration in range(nPrint):
+    if iteration != nPrint - 1:
+        frameStart = (iteration)*nFramesPerPrint
+        frameEnd = (iteration+1)*nFramesPerPrint
+        np.save(f"ML_INPUT_{REPLICA_ID}_{iteration}.npy", ML_INPUT_WITHLABELS_arr[frameStart:frameEnd,:])
+    elif iteration == nPrint - 1:
+        frameStart = (iteration)*nFramesPerPrint
+        np.save(f"ML_INPUT_{REPLICA_ID}_{iteration}.npy", ML_INPUT_WITHLABELS_arr[frameStart:,:])
+
+#np.savetxt(f"COLUMNS_{REPLICA_ID}.txt", column_names)
 #ML_INPUT_WITHLABELS.to_pickle(f"ML_INPUT_{REPLICA_ID}.pkl")  
 
 end = time.time()
